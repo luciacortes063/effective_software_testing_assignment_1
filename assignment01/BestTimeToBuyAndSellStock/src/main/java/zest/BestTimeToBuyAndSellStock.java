@@ -15,7 +15,9 @@ public class BestTimeToBuyAndSellStock {
             throw new IllegalArgumentException("Input array cannot be null or empty");
         }
 
-        int minPrice = 0;
+        int minPrice = prices[0]; // Bug fix -> minPrice must start at prices[0], not 0.
+        // Starting at 0 made the algorithm think it could buy at price 0,
+        // which is not a real day in the array, and made the profit bigger.
         int maxProfit = 0;
 
         for (int i = 1; i < prices.length; i++) {

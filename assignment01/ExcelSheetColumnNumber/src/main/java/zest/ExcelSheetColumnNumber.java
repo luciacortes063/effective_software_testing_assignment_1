@@ -24,7 +24,13 @@ public class ExcelSheetColumnNumber {
                 throw new IllegalArgumentException("Invalid character in column title");
             }
 
-            result = result * 26 + (c - 'A');
+            //result = result * 26 + (c - 'A');
+
+            // Bug Fix: 'A' maps to 1, not 0, so we need + 1.
+            // Without it, every column number is shifted by -1 per digit,
+            // for example "A" returns 0 instead of 1, "AA" returns 26 instead of 27.
+
+            result = result * 26 + (c - 'A' + 1);
         }
 
         return result;

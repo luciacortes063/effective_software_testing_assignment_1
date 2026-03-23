@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BestTimeToBuyAndSellStock.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BestTimeToBuyAndSellStock-test</a> &gt; <a href="index.source.html" class="el_package">zest</a> &gt; <span class="el_source">BestTimeToBuyAndSellStock.java</span></div><h1>BestTimeToBuyAndSellStock.java</h1><pre class="source lang-java linenums">package zest;
+
+<span class="nc" id="L3">public class BestTimeToBuyAndSellStock {</span>
+
+    /**
+     * Returns the maximum profit that can be achieved by
+     * buying on one day and selling on a later day.
+     *
+     * @param prices array of stock prices
+     * @return maximum possible profit, or 0 if no profit is possible
+     * @throws IllegalArgumentException if prices is null or empty
+     */
+    public static int maxProfit(int[] prices) {
+<span class="fc bfc" id="L14" title="All 4 branches covered.">        if (prices == null || prices.length == 0) {</span>
+<span class="fc" id="L15">            throw new IllegalArgumentException(&quot;Input array cannot be null or empty&quot;);</span>
+        }
+
+<span class="fc" id="L18">        int minPrice = prices[0]; // Bug fix -&gt; minPrice must start at prices[0], not 0.</span>
+        // Starting at 0 made the algorithm think it could buy at price 0,
+        // which is not a real day in the array, and made the profit bigger.
+<span class="fc" id="L21">        int maxProfit = 0;</span>
+
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        for (int i = 1; i &lt; prices.length; i++) {</span>
+
+<span class="fc bfc" id="L25" title="All 2 branches covered.">            if (prices[i] &lt; minPrice) {</span>
+<span class="fc" id="L26">                minPrice = prices[i];</span>
+            } else {
+<span class="fc" id="L28">                int profit = prices[i] - minPrice;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">                if (profit &gt; maxProfit) {</span>
+<span class="fc" id="L30">                    maxProfit = profit;</span>
+                }
+            }
+        }
+
+<span class="fc" id="L35">        return maxProfit;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

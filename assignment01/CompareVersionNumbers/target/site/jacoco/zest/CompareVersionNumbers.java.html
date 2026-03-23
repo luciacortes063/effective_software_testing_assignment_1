@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CompareVersionNumbers.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CompareVersionNumbers-test</a> &gt; <a href="index.source.html" class="el_package">zest</a> &gt; <span class="el_source">CompareVersionNumbers.java</span></div><h1>CompareVersionNumbers.java</h1><pre class="source lang-java linenums">package zest;
+
+<span class="nc" id="L3">public class CompareVersionNumbers {</span>
+
+    /**
+     * Compares two version strings.
+     *
+     * @param version1 first version string
+     * @param version2 second version string
+     * @return -1 if version1 &lt; version2,
+     *          1 if version1 &gt; version2,
+     *          0 if equal
+     * @throws IllegalArgumentException if either input is null
+     */
+    public static int compareVersion(String version1, String version2) {
+<span class="fc bfc" id="L16" title="All 4 branches covered.">        if (version1 == null || version2 == null) {</span>
+<span class="fc" id="L17">            throw new IllegalArgumentException(&quot;Version strings cannot be null&quot;);</span>
+        }
+
+<span class="fc" id="L20">        String[] v1Parts = version1.split(&quot;\\.&quot;);</span>
+<span class="fc" id="L21">        String[] v2Parts = version2.split(&quot;\\.&quot;);</span>
+
+<span class="fc" id="L23">        int maxLength = Math.max(v1Parts.length, v2Parts.length);</span>
+
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        for (int i = 0; i &lt; maxLength; i++) {</span>
+
+<span class="fc bfc" id="L27" title="All 2 branches covered.">            int num1 = (i &lt; v1Parts.length) ? Integer.parseInt(v1Parts[i]) : 0;</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">            int num2 = (i &lt; v2Parts.length) ? Integer.parseInt(v2Parts[i]) : 0;</span>
+
+
+<span class="fc bfc" id="L31" title="All 2 branches covered.">            if (num1 &gt; num2) {</span>
+<span class="fc" id="L32">                return 1; // Bug fix: the return values were swapped.</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">            } else if (num1 &lt; num2) {</span>
+<span class="fc" id="L34">                return -1; // Bug fix: the return values were swapped.</span>
+            }
+            // If num1 &gt; num2, version1 is greater, so we have to return 1 (not -1).
+            // If num1 &lt; num2, version1 is smaller, so we have to return -1 (not 1).
+        }
+
+<span class="fc" id="L40">        return 0;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

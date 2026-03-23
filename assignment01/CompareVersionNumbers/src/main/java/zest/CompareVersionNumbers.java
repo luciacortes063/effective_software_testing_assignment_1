@@ -27,11 +27,14 @@ public class CompareVersionNumbers {
             int num1 = (i < v1Parts.length) ? Integer.parseInt(v1Parts[i]) : 0;
             int num2 = (i < v2Parts.length) ? Integer.parseInt(v2Parts[i]) : 0;
 
+
             if (num1 > num2) {
-                return -1;
+                return 1; // Bug fix: the return values were swapped.
             } else if (num1 < num2) {
-                return 1;
+                return -1; // Bug fix: the return values were swapped.
             }
+            // If num1 > num2, version1 is greater, so we have to return 1 (not -1).
+            // If num1 < num2, version1 is smaller, so we have to return -1 (not 1).
         }
 
         return 0;

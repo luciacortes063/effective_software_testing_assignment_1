@@ -38,6 +38,12 @@ public class AddBinary {
             carry = sum / 2;
         }
 
+        if (carry > 0) {
+            result.append(carry);
+        } // Bug fix: After the loop, there may still be a carry left over.
+        // For example 1 + 1: the loop writes 0 and exits with carry = 1.
+        // Without this, that carry is lost and the result would be 0 instead of 10
+
         return result.reverse().toString();
     }
 
