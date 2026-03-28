@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MoveZeroes.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MoveZeroes-test</a> &gt; <a href="index.source.html" class="el_package">zest</a> &gt; <span class="el_source">MoveZeroes.java</span></div><h1>MoveZeroes.java</h1><pre class="source lang-java linenums">package zest;
+
+<span class="nc" id="L3">public class MoveZeroes {</span>
+
+    /**
+     * Moves all zero values in the array to the end,
+     * preserving the relative order of non-zero elements.
+     * The operation is performed in-place.
+     * @param numbers the array to modify
+     * @throws IllegalArgumentException if numbers is null
+     */
+    public static void moveZeroes(int[] numbers) {
+<span class="fc bfc" id="L13" title="All 2 branches covered.">        if (numbers == null) {</span>
+<span class="fc" id="L14">            throw new IllegalArgumentException(&quot;Array cannot be null&quot;);</span>
+        }
+
+<span class="fc" id="L17">        int insertPosition = 0;</span>
+
+        // First pass: move all non-zero elements forward
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        for (int i = 0; i &lt; numbers.length; i++) {</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">            if (numbers[i] != 0) {</span>
+<span class="fc" id="L22">                numbers[insertPosition] = numbers[i];</span>
+<span class="fc" id="L23">                insertPosition++;</span>
+            }
+        }
+
+        // Second pass: fill remaining positions with zero
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        while (insertPosition &lt; numbers.length) {</span>
+<span class="fc" id="L29">            numbers[insertPosition] = 0;</span>
+<span class="fc" id="L30">            insertPosition++;</span>
+        }
+<span class="fc" id="L32">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
