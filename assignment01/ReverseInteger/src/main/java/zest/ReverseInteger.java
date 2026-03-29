@@ -17,14 +17,12 @@ public class ReverseInteger {
             x /= 10;
 
             // Check for overflow before multiplying by 10
-            if (reversed > Integer.MAX_VALUE / 10 ||
-                    (reversed == Integer.MAX_VALUE / 10 && digit > 7)) {
+            if (reversed > Integer.MAX_VALUE / 10) {
                 return 0;
             }
 
             // Check for underflow
-            if (reversed < Integer.MIN_VALUE / 10 ||
-                    (reversed == Integer.MIN_VALUE / 10 && digit < -8)) {
+            if (reversed < Integer.MIN_VALUE / 10) {
                 return 0;
             }
 
