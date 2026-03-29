@@ -32,7 +32,7 @@ public class PlusOneTest {
     }
     
     @Test
-    void mutantTest() {
+    void multipleCarries() {
         assertArrayEquals(new int[]{1, 0, 0}, PlusOne.plusOne(new int[]{9, 9})); 
     }
 }

@@ -31,6 +31,20 @@ public class SortColorsTest {
     }
 
     @Test
+    void leftSwap() {
+        int[] inputA = new int[]{1, 0};
+        SortColors.sortColors(inputA);
+        assertArrayEquals(new int[]{0, 1}, inputA);
+    }
+
+    @Test
+    void rightSwap() {
+        int[] inputB = new int[]{2, 1};
+        SortColors.sortColors(inputB);
+        assertArrayEquals(new int[]{1, 2}, inputB);
+    }
+
+    @Test
     void alreadySortedArray() {
         int[] input = new int[]{0, 0, 1, 1, 2, 2};
         SortColors.sortColors(input);
@@ -56,12 +70,5 @@ public class SortColorsTest {
         int[] input = new int[]{1};
         SortColors.sortColors(input);
         assertArrayEquals(new int[]{1}, input);
-    }
-
-    @Test
-    void arrayMutable() {
-        int[] input = new int[]{2, 0, 1};
-        SortColors.sortColors(input);
-        assertArrayEquals(new int[]{0, 1, 2}, input);
     }
 }

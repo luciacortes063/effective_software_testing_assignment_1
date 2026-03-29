@@ -1,16 +1,27 @@
 package zest;
 
 import net.jqwik.api.ForAll;
-import net.jqwik.api.Example;
 import net.jqwik.api.Property;
 import net.jqwik.api.constraints.IntRange;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Test;
+
 class PerfectSquarePropertyTest {
 
-    @Example
+    @Test
     void negativeNumberThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> ValidPerfectSquare.isPerfectSquare(-1));
+    }
+  
+    @Test
+    void zeroNumberThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> ValidPerfectSquare.isPerfectSquare(0));
+    }
+
+    @Test
+    void oneIsPerfectSquare() {
+        assertTrue(ValidPerfectSquare.isPerfectSquare(1));
     }
 
     @Property
