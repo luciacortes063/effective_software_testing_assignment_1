@@ -24,7 +24,8 @@ public class PlusOne {
         }
 
         // If we reach here, all digits were 9 (e.g., 999)
-        int[] result = new int[digits.length];
+        // We need an extra digit at the beginning
+        int[] result = new int[digits.length + 1];
         result[0] = 1;
         return result;
     }
