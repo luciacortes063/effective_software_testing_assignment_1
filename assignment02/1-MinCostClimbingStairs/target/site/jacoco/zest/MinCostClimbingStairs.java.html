@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MinCostClimbingStairs.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MinCostClimbingStairs</a> &gt; <a href="index.source.html" class="el_package">zest</a> &gt; <span class="el_source">MinCostClimbingStairs.java</span></div><h1>MinCostClimbingStairs.java</h1><pre class="source lang-java linenums">package zest;
+
+<span class="fc" id="L3">public class MinCostClimbingStairs {</span>
+
+    public int minCostClimbingStairs(int[] cost) {
+        // Pre-conditions
+<span class="fc bfc" id="L7" title="All 2 branches covered.">        if (cost == null) {</span>
+<span class="fc" id="L8">            throw new IllegalArgumentException(&quot;cost array must not be null&quot;);</span>
+        }
+<span class="fc bfc" id="L10" title="All 4 branches covered.">        if (cost.length &lt; 2 || cost.length &gt; 1000) {</span>
+<span class="fc" id="L11">            throw new IllegalArgumentException(&quot;cost array length must be between 2 and 1000, got: &quot; + cost.length);</span>
+        }
+<span class="fc bfc" id="L13" title="All 2 branches covered.">        for (int i = 0; i &lt; cost.length; i++) {</span>
+<span class="fc bfc" id="L14" title="All 4 branches covered.">            if (cost[i] &lt; 0 || cost[i] &gt; 999) {</span>
+<span class="fc" id="L15">                throw new IllegalArgumentException(&quot;cost[&quot; + i + &quot;] must be between 0 and 999, got: &quot; + cost[i]);</span>
+            }
+        }
+
+<span class="fc" id="L19">        int n = cost.length;</span>
+<span class="fc" id="L20">        int[] dp = new int[n];</span>
+
+        // Bug: dp[0] was incorrectly set to 0 instead of cost[0]. This caused wrong results whenever starting from step 0 is optimal.
+<span class="fc" id="L23">        dp[0] = cost[0];</span>
+<span class="fc" id="L24">        dp[1] = cost[1];</span>
+
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        for (int i = 2; i &lt; n; i++) {</span>
+<span class="fc" id="L27">            dp[i] = cost[i] + Math.min(dp[i - 1], dp[i - 2]);</span>
+            // Invariant: every dp value must be non-negative given valid inputs
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">            if (dp[i] &lt; 0) {</span>
+<span class="nc" id="L30">                throw new IllegalStateException(&quot;invariant violated: dp[&quot; + i + &quot;] is negative&quot;);</span>
+            }
+        }
+
+<span class="fc" id="L34">        int result = Math.min(dp[n - 1], dp[n - 2]);</span>
+
+        // Post-condition: result must be non-negative
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">        if (result &lt; 0) {</span>
+<span class="nc" id="L38">            throw new IllegalStateException(&quot;post-condition violated: result is negative&quot;);</span>
+        }
+
+<span class="fc" id="L41">        return result;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
