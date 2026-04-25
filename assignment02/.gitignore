@@ -21,3 +21,6 @@
 
 # Logs
 *.log
+
+# Pycache
+**/__pycache__/
