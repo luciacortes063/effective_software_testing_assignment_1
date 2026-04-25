@@ -1,0 +1,23 @@
+# Maven / Java build outputs
+**/target/
+**/*.class
+**/*.jar
+**/*.war
+**/*.ear
+
+# Dependency caches and temporary files
+**/.mvn/wrapper/maven-wrapper.jar
+**/dependency-reduced-pom.xml
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VS Code workspace settings (optional to share, so ignored by default)
+.vscode/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
