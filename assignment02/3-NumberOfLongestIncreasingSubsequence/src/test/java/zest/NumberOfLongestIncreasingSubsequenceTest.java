@@ -79,7 +79,7 @@ class NumberOfLongestIncreasingSubsequenceTest {
 
     @Test
     void testMultipleEqualLengthChains() {
-        // [1,2,4,3,5,4,7,2] -> several length-4 chains
+        // [1,2,4,3,5,4,7,2] -> several length-5 chains
         int[] nums = {1, 2, 4, 3, 5, 4, 7, 2};
         // chains of length 5: [1,2,4,5,7], [1,2,3,5,7], [1,2,3,4,7] -> 3
         assertEquals(3, solution.findNumberOfLIS(nums));
